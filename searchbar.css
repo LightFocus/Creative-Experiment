@@ -1,0 +1,39 @@
+img {
+  display: block;
+  margin: auto;
+
+
+}
+
+form {
+  width: 70%;
+  margin: 0 auto; }
+form textarea,
+form input {
+  width: 500px;
+  height: 30px;
+  font-size: 1.1em;
+  max-width: 800px;
+  min-width: 400px;
+
+}
+input {
+  background: url(micpic.png) no-repeat right;
+  background-size: contain;
+  border: 1px solid #CECECE;
+
+}
+
+button {
+
+  background: #F1F1F1;
+  border: 1px solid #F5F5F5;
+  padding: 10px 15px 10px 15px;
+  margin: 15px 2px;
+
+}
+
+body {
+  text-align: center;
+  min-width: 400px;
+}
