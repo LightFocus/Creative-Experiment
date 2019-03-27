@@ -73,11 +73,61 @@
                 app[0].style.display = "none";
                 var setting = document.getElementById("hdtb");
                 setting.style.display = "none";
+                var bar = document.getElementsByClassName("Wnoohf");
+                for(var i=0;i<bar.length-1;i++){
+                    bar[i].style.display = "none";
+                }
+                var feed = document.getElementsByClassName("kno-ftr");
+                feed[0].style.display = "none";
             </script>
   <?php
-      }
+      }else{ ?>
+            <script>
+                var wid = document.getElementsByClassName("v6U7rf");
+                wid[0].style.display = "none";
+                var setting = document.getElementById("hdtb-sc");
+                setting.style.display = "none";
+                var footer = document.getElementById("ftcntr");
+                footer.style.display = "none";
+                var gap = document.getElementById("msc");
+                gap.style.display = "none";
+            </script>
+      <?php }
     }
   ?>
       <script src="bootstrap.min.js"></script>
+      <?php if($_SESSION["mobile"]==0){?>
+      <style>
+          .kno-vrt-t a
+          {
+            min-height: 0px;
+          }
+        </style>
+      <?php }else{ ?>
+        <style>
+          .kno-vrt-t
+          {
+            height: auto;
+          }
+          .zGVn2e{
+            margin-top:20px;
+          }
+          .q2eaDe{
+              height:auto;
+          }
+          .WpKAof{
+              height:auto;
+          }
+          .QmUzgb{
+              height:auto;
+          }
+          .vNg04e{
+            height:auto;
+          }
+          .KojFAc{
+              display:none;
+          }
+        </style>
+      <?php } ?>
     </body>
     </html>
