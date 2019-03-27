@@ -1,5 +1,41 @@
 <?php
   session_start();
+  function isMobile() {
+  // 如果有HTTP_X_WAP_PROFILE则一定是移动设备
+  if (isset($_SERVER['HTTP_X_WAP_PROFILE'])) {
+    return true;
+  }
+  // 如果via信息含有wap则一定是移动设备,部分服务商会屏蔽该信息
+  if (isset($_SERVER['HTTP_VIA'])) {
+    // 找不到为flase,否则为true
+    return stristr($_SERVER['HTTP_VIA'], "wap") ? true : false;
+  }
+  // 脑残法，判断手机发送的客户端标志,兼容性有待提高。其中'MicroMessenger'是电脑微信
+  if (isset($_SERVER['HTTP_USER_AGENT'])) {
+    $clientkeywords = array('nokia','sony','ericsson','mot','samsung','htc','sgh','lg','sharp','sie-','philips','panasonic','alcatel',
+    'lenovo','iphone','ipod','blackberry','meizu','android','netfront','symbian','ucweb','windowsce','palm','operamini','operamobi',
+    'openwave','nexusone','cldc','midp','wap','mobile','MicroMessenger');
+    // 从HTTP_USER_AGENT中查找手机浏览器的关键字
+    if (preg_match("/(" . implode('|', $clientkeywords) . ")/i", strtolower($_SERVER['HTTP_USER_AGENT']))) {
+      return true;
+    }
+  }
+  // 协议法，因为有可能不准确，放到最后判断
+  if (isset ($_SERVER['HTTP_ACCEPT'])) {
+    // 如果只支持wml并且不支持html那一定是移动设备
+    // 如果支持wml和html但是wml在html之前则是移动设备
+    if ((strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') !== false) && (strpos($_SERVER['HTTP_ACCEPT'], 'text/html') ===
+    false || (strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') < strpos($_SERVER['HTTP_ACCEPT'], 'text/html')))) {
+      return true;
+    }
+  }
+  return false;
+}
+  if(isMobile())
+    $_SESSION["mobile"]=1;
+  else
+    $_SESSION["mobile"]=0;
+
   $_SESSION['res_search']="";
   if(isset($_GET['search'])&&$_GET['search']!=""){
     $_SESSION['res_search']=$_GET['search'];
@@ -13,87 +49,33 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <script src="jquery.min.js"></script>
-        <link type="text/css" rel="stylesheet" href="searchbox.css"></link>
     </head>
     <body>
-        <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-            <symbol xmlns="http://www.w3.org/2000/svg" id="sbx-icon-search-13" viewBox="0 0 40 40">
-                <path d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z" fill-rule="evenodd" />
-            </symbol>
-            <symbol xmlns="http://www.w3.org/2000/svg" id="sbx-icon-clear-3" viewBox="0 0 20 20">
-                <path d="M8.114 10L.944 2.83 0 1.885 1.886 0l.943.943L10 8.113l7.17-7.17.944-.943L20 1.886l-.943.943-7.17 7.17 7.17 7.17.943.944L18.114 20l-.943-.943-7.17-7.17-7.17 7.17-.944.943L0 18.114l.943-.943L8.113 10z" fill-rule="evenodd" />
-            </symbol>
-        </svg>
-        <div align="center">
-            <br>
-            <br>
-            <form method="get" action="results" novalidate="novalidate" class="searchbox sbx-google">
-                <div role="search" class="sbx-google__wrapper">
-                    <input type="search" name="search" placeholder="Search" autocomplete="off" required="required" class="sbx-google__input">
-                    <br>
-                    <br>
-                    <button type="submit" title="Submit your search query." class="sbx-google__submit">
-                        <svg role="img" aria-label="Search">
-                            <use xlink:href="#sbx-icon-search-13"></use>
-                        </svg>
-                    </button>
-                    <button type="reset" title="Clear the search query." class="sbx-google__reset">
-                        <svg role="img" aria-label="Reset">
-                            <use xlink:href="#sbx-icon-clear-3"></use>
-                        </svg>
-                    </button>
-                </div>
-            </form>
-            <br>
-            <br>
-            <br>
-            <h3>Be creative and make this world a better place.</h3>
-        </div>
   <?php
     $base='http://www.google.com.hk/search?oe=utf-8&q=';
     if(isset($_SESSION['res_search'])){
       $search=urlencode($_SESSION['res_search']);
       $url=$base.$search;
-      ini_set('user_agent','Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; .NET CLR 2.0.50727; .NET CLR 3.0.04506.30; GreenBrowser)');
+      if($_SESSION["mobile"]==1){
+        ini_set('user_agent',$_SERVER['HTTP_USER_AGENT']);
+      }else
+        ini_set('user_agent','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36');
       $homepage = file_get_contents($url,'r');
       echo $homepage;
+      if($_SESSION["mobile"]==0){
   ?>
-            <script type="text/javascript">
-                var gb = document.getElementById("guser");
-                gb.style.display = "none";
-                var gb = document.getElementById("gbar");
-                gb.style.display = "none";
-                var sf = document.getElementsByClassName("sfbgg");
-                sf[0].style.display = "none";
-                sf[1].style.display = "none";
-                sf[2].style.display = "none";
-                var a8 = document.getElementsByClassName("A8ul6");
-                a8[0].innerHTML = "\n";
-                a8[1].innerHTML = "\n";
-                var sft = document.getElementsByClassName("sFTC8c");
-                sft[1].innerHTML = "\n";
-                sft[2].innerHTML = "\n";
-                sft[3].innerHTML = "\n";
-                sft[4].innerHTML = "\n";
-                sft[5].innerHTML = "\n";
-                var gbh = document.getElementsByClassName("gbh");
-                gbh[0].style.display = "none";
-                gbh[1].style.display = "none";
-            </script>
             <script>
-                var img = document.getElementsByTagName("img");
-                for (var i = 0; i < img.length; i++) {
-                    if (img[i].src[17] == "/" && img[i].src[18] == "m") {
-                        var newsrc = "https://google.com";
-                        for (var j = 17; j < img[i].src.length; j++) {
-                            newsrc = newsrc + img[i].src[j];
-                        }
-                        img[i].setAttribute("src", newsrc);
-                        break;
-                    }
-                }
+                var logo = document.getElementsByClassName("logo");
+                logo[0].style.display = "none";
+                var voice = document.getElementsByClassName("dRYYxd");
+                voice[0].style.display = "none";
+                var app = document.getElementsByClassName("gb_Ja");
+                app[0].style.display = "none";
+                var setting = document.getElementById("hdtb");
+                setting.style.display = "none";
             </script>
   <?php
+      }
     }
   ?>
       <script src="bootstrap.min.js"></script>
