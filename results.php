@@ -66,7 +66,12 @@
   ?>
             <script>
                 var logo = document.getElementsByClassName("logo");
-                logo[0].style.display = "none";
+                logoa=logo[0].childNodes[0];
+                logoa.setAttribute('href','https://wikigo.cn');
+                logoimg=logoa.childNodes[0];
+                logoimg.src= "https://lightfocus-1256547063.cos.ap-hongkong.myqcloud.com/website.png";
+                logoimg.setAttribute('height','34px');
+                logoimg.setAttribute('width','107px');
                 var voice = document.getElementsByClassName("dRYYxd");
                 voice[0].style.display = "none";
                 var app = document.getElementsByClassName("gb_Ja");
@@ -75,22 +80,38 @@
                 setting.style.display = "none";
                 var bar = document.getElementsByClassName("Wnoohf");
                 for(var i=0;i<bar.length-1;i++){
+                  if(bar[i].className!="kp-blk knowledge-panel Wnoohf OJXvsb")
                     bar[i].style.display = "none";
                 }
                 var feed = document.getElementsByClassName("kno-ftr");
                 feed[0].style.display = "none";
+                var cu = document.getElementsByClassName("cu-container");
+                for(var i=0;i<cu.length;i++){
+                    cu[i].style.display = "none";
+                }
             </script>
   <?php
       }else{ ?>
             <script>
-                var wid = document.getElementsByClassName("v6U7rf");
-                wid[0].style.display = "none";
+                var wid = document.getElementById("qslc");
+                logoa=wid.childNodes[0];
+                logoa.setAttribute('href','https://wikigo.cn');
+                var img = document.createElement("img");
+                logoimg=logoa.childNodes[0].appendChild(img);
+                logoimg.src = "https://lightfocus-1256547063.cos.ap-hongkong.myqcloud.com/website.png";
+                logoimg.setAttribute('height','100%');
                 var setting = document.getElementById("hdtb-sc");
                 setting.style.display = "none";
                 var footer = document.getElementById("ftcntr");
                 footer.style.display = "none";
                 var gap = document.getElementById("msc");
                 gap.style.display = "none";
+                var taw = document.getElementById("taw");
+                taw.style.display = "none";
+                var bar = document.getElementsByClassName("Wnoohf");
+                for(var i=0;i<bar.length;i++){
+                    bar[i].style.display = "none";
+                }
             </script>
       <?php }
     }
@@ -126,6 +147,12 @@
           }
           .KojFAc{
               display:none;
+          }
+          .v6U7rf{
+            height:50px;
+          }
+          .v6U7rf .SR3ZX{
+            margin-left:-57px;
           }
         </style>
       <?php } ?>
