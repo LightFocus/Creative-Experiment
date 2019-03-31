@@ -38,6 +38,16 @@ function isMobile() {
 ?>
 <html lang="zh-CN" charset="utf-8">
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137375400-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-137375400-1');
+  </script>
+
 </head>
 <body>
 <?php
@@ -156,6 +166,9 @@ function isMobile() {
           }
           .v6U7rf .SR3ZX{
             margin-left:-57px;
+          }
+          .w7Ec6{
+            height:auto;
           }
         </style>
       <?php } ?>
