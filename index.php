@@ -1,4 +1,5 @@
 <?php
+require_once("security.php");
 session_start();
 function isMobile() {
   // 如果有HTTP_X_WAP_PROFILE则一定是移动设备
@@ -124,7 +125,7 @@ function isMobile() {
   <div class="container marketing">
     <div class="container">
         <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" id="anime" src="https://lightfocus-1256547063.cos.ap-hongkong.myqcloud.com/website.png" width="300">
+        <img class="d-block mx-auto mb-4" id="anime" src="https://lightfocus-1256547063.cos.ap-hongkong.myqcloud.com/website.png" width="200px" style="margin-top:50px;">
         </div>
       <div class="row">
         <form class="form-signin" method="get" action="results">

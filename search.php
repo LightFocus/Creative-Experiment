@@ -1,4 +1,5 @@
 <?php
+require_once("security.php");
 session_start();
 function isMobile() {
   // 如果有HTTP_X_WAP_PROFILE则一定是移动设备
@@ -53,7 +54,7 @@ function isMobile() {
 <?php
   $base='http://www.google.com.hk/search?oe=utf-8&q=';
   if($_SESSION["mobile"]==1){
-    ini_set('user_agent',$_SERVER['HTTP_USER_AGENT']);
+    ini_set('user_agent','Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.');
   }else
     ini_set('user_agent','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36');
   if(isset($_GET['q'])){
@@ -76,7 +77,11 @@ function isMobile() {
   }
 
   $homepage = file_get_contents($url,'r');
-  echo $homepage;
+  ?>
+  <div id="google_content">
+  <?php echo $homepage; ?>
+  </div>
+  <?php
   unset($_SESSION['search']);
   unset($_SESSION['start']);
   unset($_SESSION['tbs']);
@@ -89,8 +94,8 @@ function isMobile() {
                 logoa.setAttribute('href','https://wikigo.cn');
                 logoimg=logoa.childNodes[0];
                 logoimg.src= "https://lightfocus-1256547063.cos.ap-hongkong.myqcloud.com/website.png";
-                logoimg.setAttribute('height','34px');
-                logoimg.setAttribute('width','107px');
+                logoimg.setAttribute('height','40px');
+                logoimg.setAttribute('width','40px');
                 var voice = document.getElementsByClassName("dRYYxd");
                 voice[0].style.display = "none";
                 var app = document.getElementsByClassName("gb_Ja");
@@ -106,6 +111,8 @@ function isMobile() {
                 for(var i=0;i<cu.length;i++){
                     cu[i].style.display = "none";
                 }
+                var searchbar=document.getElementsByClassName("mslg");
+                searchbar[0].style.display="none";
             </script>
   <?php }else{ ?>
             <script>
@@ -136,6 +143,10 @@ function isMobile() {
           {
             min-height: 0px;
           }
+          .logo{
+            top:0;
+            left:-120px;
+          }
         </style>
       <?php }else{ ?>
         <style>
@@ -165,7 +176,7 @@ function isMobile() {
             height:50px;
           }
           .v6U7rf .SR3ZX{
-            margin-left:-57px;
+            margin-left:-18px;
           }
           .w7Ec6{
             height:auto;
