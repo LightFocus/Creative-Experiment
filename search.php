@@ -39,6 +39,7 @@ function isMobile() {
 ?>
 <html lang="zh-CN" charset="utf-8">
 <head>
+  <meta charset="UTF-8">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137375400-1"></script>
   <script>
@@ -48,7 +49,9 @@ function isMobile() {
 
     gtag('config', 'UA-137375400-1');
   </script>
-
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 </head>
 <body>
 <?php
@@ -81,6 +84,54 @@ function isMobile() {
   <div id="google_content">
   <?php echo $homepage; ?>
   </div>
+        <Button id="switch" style="    position: relative;
+    left: 50%;
+    width: 150px;
+    margin-left: -75px;
+    font-size: 15px;
+    margin-bottom: 20px;">Dark Mode Toggle</Button>
+      <script type="text/javascript">
+     $(document).ready(function(){
+      var dark=getCookie("dark");
+      if(dark=='false'||dark==""){
+        var css = document.getElementById('css');
+        css.href = '';
+      }else{
+        var css = document.getElementById('css');
+        css.href='/darkmoderes.css';
+      }
+    });
+    $("#switch").click(function(){
+      var dark=getCookie("dark");
+      if(dark=='false'||dark==""){
+        var css = document.getElementById('css');
+        css.href = '/darkmoderes.css';
+        setCookie('dark','true',1);
+      }else{
+        var css = document.getElementById('css');
+        css.href='';
+        setCookie('dark','false',1);
+      }
+    }
+  );
+  function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+d.toUTCString();
+        document.cookie = cname + "=" + cvalue + "; " + expires +";path=/";
+      } 
+      // 读cookie
+      function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++) {
+           var c = ca[i];
+           while (c.charAt(0)==' ') c = c.substring(1);
+           if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+         }
+         return "";
+      }
+</script>
   <?php
   unset($_SESSION['search']);
   unset($_SESSION['start']);
@@ -183,5 +234,8 @@ function isMobile() {
           }
         </style>
       <?php } ?>
+      <script src="keyword.js"></script>
+      <script src="formvalidation.js"></script>
+      <link id="css" href="" rel="stylesheet">   
 </body>
 </html>

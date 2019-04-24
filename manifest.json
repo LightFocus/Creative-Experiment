@@ -1,0 +1,15 @@
+{
+    "short_name": "WikiGo",
+    "name": "WikiGo - An Alternative Everyone Deserves",
+    "icons": [{
+        "src": "https://lightfocus-1256547063.cos.ap-hongkong.myqcloud.com/website.png",
+        "sizes": "144x144",
+        "type": "image/png"
+     }],
+    "scope": "/",
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "theme_color": "#000",
+    "background_color": "#fff"
+  }
