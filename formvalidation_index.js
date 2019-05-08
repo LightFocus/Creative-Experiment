@@ -1,15 +1,15 @@
-    var keyword=[
-        {"name":"王"},
-	    {"name":"江泽民"},
-	    {"name":"周恩来"},
-	    {"name":"胡锦涛"},
-	    {"name":"刘少奇"},
-	    {"name":"李克强"},
-	    {"name":"吴"},
-	    {"name":"毛泽东"},
-	    {"name":"温家宝"},
-	    {"name":"习近平"},
-        { "name": "共铲党" },
+var keyword=[
+	{"name":"王"},
+	{"name":"江泽民"},
+	{"name":"周恩来"},
+	{"name":"胡锦涛"},
+	{"name":"刘少奇"},
+	{"name":"李克强"},
+	{"name":"吴"},
+	{"name":"毛泽东"},
+	{"name":"温家宝"},
+	{"name":"习近平"},
+	{ "name": "共铲党" },
 	{ "name": "共残党" },
 	{ "name": "共惨党" },
 	{ "name": "共匪" },
@@ -452,19 +452,24 @@
 	{ "name": "右派" },
 	{ "name": "宣言" },
 	{ "name": "鲁昕" }
-    ];
-        
-        function kwfilter() {
-            var content = document.getElementById("google_content");
-            for (var i = 0; i < keyword.length; ++i) {
-                var reg = new RegExp(keyword[i].name, "g");
-                var replace_content = "";
-                for (var j = 0; j < keyword[i].name.length; ++j) {
-                    replace_content += " ";
-                }
-                content.innerHTML = content.innerHTML.replace(reg, replace_content);
-            }
-        }
+];
 
-		kwfilter();
-		
+//表单验证方法
+function validate_required(field, alerttxt) {
+    with (field) {
+        for (var i = 0; i <= keyword.length - 1; ++i) {
+            var reg = new RegExp(keyword[i].name, "g");
+                if (reg.test(txt)) {
+					alert(alerttxt);
+					return false;
+                }
+        }
+    }
+}
+
+//表单验证
+function validate_form(thisform) {
+    with (thisform) {
+        if (validate_required(search, "请不要输入非法关键词!") == false) { search.focus(); return false }
+    }
+}

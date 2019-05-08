@@ -20,7 +20,7 @@ Sorry for the messy code since I did not spend too much time on it.
 
 ## License
 
-This project has no lincense
+This project has no license
 
 ## Acknowledgments
 

@@ -98,7 +98,7 @@ function isMobile() {
     2.所有搜索结果均由谷歌 (Google Inc.) 提供，本站对所有搜索结果不负任何责任;<br>
     3.本站仅拥有首页除GitHub图标外的媒体版权，其他页面媒体版权与本站无关;<br>
     4.本站不提供任何形式的代理，故能否访问搜索结果对应的页面取决于你所在地的法律法规;<br>
-    5.TODO:为了规避法律政策风险，本站已屏蔽部分搜索关键词，希望大家合法使用该网站。<br>
+    5.为了规避法律政策风险，本站已屏蔽部分搜索关键词，希望大家合法使用该网站。<br>
     <br>Have a nice day!<br>
     </div>
     <p style="text-align:center;background: #f2f2f2;border-top: 1px solid #ccc;clear: both;margin-top: 8px;margin-bottom:0;padding: 10px;">

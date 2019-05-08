@@ -53,3 +53,45 @@ a:link, .w, #prs a:visited, #prs a:active, .q:active, .q:visited, .kl:active, .t
 a.fl:link, .fl a, .flt, a.flt, .gl a:link, a.mblink, .mblink b{
     color: #13a2ff;
 }
+.srp{
+    background-color:rgb(41,44,47);
+}
+.card:not(:empty){
+    background-color: rgb(41,44,47);
+}
+.kno-rdesc{
+    color:white;
+}
+.w8qArf, .w8qArf a.fl{
+    color:white;
+}
+.N60dNb, .N60dNb a{
+    color:white;
+}
+.iXqz2e .exp-txt-c{
+    color:white;
+}
+.lyLwlc{
+    color:white;
+}
+.s75CSd{
+    color:white;
+}
+.QgXoL{
+    color:white;
+}
+.D9l01{
+    background-color: rgb(41,44,47);
+}
+.mnr-c.bUNBRd:not(:empty){
+    background-color: rgb(41,44,47);
+}
+.zGVn2e{
+    background-color:rgb(41,44,47);
+}
+.mnr-c:not(:empty){
+    background-color:rgb(41,44,47);
+}
+g-inner-card{
+    background-color:rgb(111,111,111);
+}
