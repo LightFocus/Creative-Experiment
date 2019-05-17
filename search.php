@@ -234,7 +234,6 @@ function isMobile() {
           }
         </style>
       <?php } ?>
-      <script src="keyword.js"></script>
       <script src="formvalidation.js"></script>
       <link id="css" href="" rel="stylesheet">   
 </body>

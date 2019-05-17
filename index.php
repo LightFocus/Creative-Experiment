@@ -137,6 +137,7 @@ function isMobile() {
           <br>
           <div style="margin:0 auto; max-width:300px;">
             <button class="btn btn-lg btn-primary btn-block" type="submit" name="web" value="google">搜索谷歌</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" name="web" value="lucky">手气不错</button>
           </div>
         </form>
       </div>

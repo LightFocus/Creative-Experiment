@@ -42,6 +42,7 @@
     $_SESSION['res_search']=$_GET['search'];
     unset($_GET['search']);
   } 
+  if($_GET['web']=="google"){
 ?>
     <html lang="zh-CN" charset="utf-8">
     <head>
@@ -231,8 +232,41 @@
           }
         </style>
       <?php } ?>
-      <script src="keyword.js"></script>
       <script src="formvalidation.js"></script>
       <link id="css" href="" rel="stylesheet">
     </body>
     </html>
+    <?php
+      }else if($_GET['web']=='lucky'){
+    ?>
+    <html>
+      <body>
+      <h1 style="font-size:50px;">Redirecting...</h1>
+      <?php
+        $base='http://www.google.com.hk/search?oe=utf-8&q=';
+        if(isset($_SESSION['res_search'])){
+          $search=urlencode($_SESSION['res_search']);
+          $url=$base.$search;
+          if($_SESSION["mobile"]==1){
+            ini_set('user_agent','Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.');
+          }else
+            ini_set('user_agent','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36');
+          $homepage = file_get_contents($url,'r');
+        ?>
+          <div id="google_content" style="display:none">
+          <?php echo $homepage; ?>
+          </div>
+        <?php } ?>
+        <script>
+          function IFeelLuckyJump() {
+                var block = document.getElementsByClassName("LC20lb");
+                var website = block[0].parentNode.href;
+                window.location.href = website;
+            }
+          IFeelLuckyJump();
+        </script>
+      </body>
+    </html>
+    <?php
+  }
+    ?>
